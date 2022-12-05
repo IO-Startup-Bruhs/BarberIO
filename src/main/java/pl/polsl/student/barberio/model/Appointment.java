@@ -2,10 +2,7 @@ package pl.polsl.student.barberio.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -22,4 +19,7 @@ public class Appointment {
     private Duty duty;
     private Date date;
     private boolean confirmation;
+    @OneToOne
+    private AppointmentFeedback feedback;
+
 }
