@@ -25,8 +25,9 @@ public class SignupController {
     public String signup(@ModelAttribute("form") @Valid SignupForm form, BindingResult bindingResult, Model model) {
         if (!bindingResult.hasErrors()){
             this.userService.signupUser(form);
+            return "redirect:/";
         }
-        return "redirect:/";
+        return "signup";
     }
 
     @Autowired
