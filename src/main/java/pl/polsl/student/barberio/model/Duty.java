@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,5 +19,5 @@ public class Duty {
      */
     private int duration;
     @ManyToMany
-    private ArrayList<User> doneBy;
+    private List<User> doneBy;
 }

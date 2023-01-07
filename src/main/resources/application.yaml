@@ -1,0 +1,11 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:barberio
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  profiles:
+    active: devel

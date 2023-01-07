@@ -1,27 +1,26 @@
-package pl.polsl.student.barberio.model;
+package pl.polsl.student.barberio.form;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Entity
 @Data
-@Table(name = "users")
-public class User {
-    @Id
-    private long id;
+public class SignupForm {
+    @Email
     @NotEmpty
+    private String email;
+    @NotEmpty
+    @Size(max = 32)
     private String firstName;
     @NotEmpty
+    @Size(max = 32)
     private String lastName;
     @Size(min = 9, max = 9)
     private String phoneNumber;
-    @Email
-    private String email;
+    @Size(min = 8, max = 64)
     private String password;
+    @Size(min = 8, max = 64)
+    private String confirmPassword;
 }
