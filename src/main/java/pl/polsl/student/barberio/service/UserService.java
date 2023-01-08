@@ -8,6 +8,8 @@ import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.model.UserAuthority;
 import pl.polsl.student.barberio.repository.UserAuthorityRepository;
 import pl.polsl.student.barberio.repository.UserRepository;
+import java.util.List;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,19 @@ public class UserService {
 
     public List<UserAuthority> getUsersAuthorities(User user){
         return this.userAuthorityRepository.getAllByUserId(user.getId());
+    }
+
+    public List<User> getUsersWithAuthority(String authority){
+
+//        Iterable<UserAuthority> allList=userAuthorityRepository.findAll();
+//        List<Optional<User>> result=new ArrayList<>();
+//        for(var user: allList){
+//            if(user.getRole().equals(authority)){
+//                result.add(userRepository.findById(user.getUserId()));
+//            }
+//        }
+
+        return userRepository.getUsersWithAuthority(authority);
     }
 
     @Autowired
