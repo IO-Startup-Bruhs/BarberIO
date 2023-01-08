@@ -6,5 +6,5 @@ import pl.polsl.student.barberio.model.Appointment;
 import java.util.List;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
-    List<Appointment> findByCustomerPhoneNumber(String phoneNumber);
+    List<Appointment> findByCustomer_Id(long id);
 }

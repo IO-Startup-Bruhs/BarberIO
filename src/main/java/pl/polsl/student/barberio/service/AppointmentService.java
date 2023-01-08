@@ -13,6 +13,6 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
     public List<Appointment> getAppointments(User customer)
     {
-        return appointmentRepository.findByCustomerPhoneNumber(customer.getPhoneNumber().toString());
+        return appointmentRepository.findByCustomer_Id(customer.getId());
     }
 }
