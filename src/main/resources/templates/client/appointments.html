@@ -10,12 +10,14 @@
 <body>
 <table class="ui celled table">
     <thead>
-    <tr><th>Date</th>
+    <tr>
+        <th>Date</th>
         <th>Duty</th>
         <th>Employee</th>
         <th>Confirmed</th>
         <th>Actions</th>
-    </tr></thead>
+    </tr>
+    </thead>
     <tbody>
     <!--/*@thymesVar id="appointments" type="java.util.List"*/-->
     <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
@@ -26,7 +28,8 @@
         <td th:text="${appointment.getDuty().getName()}"></td>
         <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
         <td th:text="${appointment.isConfirmation() ? 'Confirmed':'Not confirmed'}"></td>
-        <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a></td>
+        <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

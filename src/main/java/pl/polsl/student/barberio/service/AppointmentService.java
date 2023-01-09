@@ -11,8 +11,8 @@ import java.util.List;
 public class AppointmentService {
 
     private AppointmentRepository appointmentRepository;
-    public List<Appointment> getAppointments(User customer)
-    {
+
+    public List<Appointment> getAppointments(User customer) {
         return appointmentRepository.findByCustomerId(customer.getId());
     }
 }

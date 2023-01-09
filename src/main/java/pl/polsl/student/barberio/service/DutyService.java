@@ -14,7 +14,7 @@ public class DutyService {
 
     private UserAuthorityRepository userAuthorityRepository;
 
-    public Duty createDuty(DutyForm form){
+    public Duty createDuty(DutyForm form) {
         var duty = new Duty();
         duty.setName(form.getName());
         duty.setDuration(form.getDuration());
@@ -26,7 +26,7 @@ public class DutyService {
     }
 
 
-   @Autowired
+    @Autowired
     public void setDutyRepository(DutyRepository dutyRepository) {
         this.dutyRepository = dutyRepository;
     }

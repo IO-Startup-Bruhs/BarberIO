@@ -7,5 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class EmployeeAppointmentsController {
     @GetMapping("/employee/appointments")
-    public String view(Model model){return "employee/appointments";}
+    public String view(Model model) {
+        return "employee/appointments";
+    }
 }

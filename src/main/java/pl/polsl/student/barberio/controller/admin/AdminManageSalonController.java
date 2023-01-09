@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.polsl.student.barberio.form.DutyForm;
-
 import pl.polsl.student.barberio.service.DutyService;
 import pl.polsl.student.barberio.service.UserService;
 
@@ -25,10 +24,11 @@ public class AdminManageSalonController {
         model.addAttribute("employees", userService.getUsersWithAuthority("ROLE_EMPLOYEE"));
         return "admin/managesalon";
     }
+
     @PostMapping("/admin/managesalon")
     public String addDuty(@ModelAttribute("form") @Valid DutyForm form, BindingResult bindingResult, Model model) {
         model.addAttribute("employees", userService.getUsersWithAuthority("ROLE_EMPLOYEE"));
-        if (!bindingResult.hasErrors()){
+        if (!bindingResult.hasErrors()) {
             this.dutyService.createDuty(form);
             return "redirect:/admin/managesalon";
         }

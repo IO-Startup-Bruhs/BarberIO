@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class DatabaseUserDetails implements UserDetails {
-    private User user;
-    private List<SimpleGrantedAuthority> authorities;
+    private final User user;
+    private final List<SimpleGrantedAuthority> authorities;
 
     public DatabaseUserDetails(User user, List<SimpleGrantedAuthority> authorities) {
         this.user = user;
