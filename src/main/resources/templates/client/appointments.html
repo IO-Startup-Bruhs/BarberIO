@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your planned appointments</title>
+    <title>Your planned appointments | BarberIO</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
@@ -26,7 +26,9 @@
         <td th:text="${appointment.getDuty().getName()}"></td>
         <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
         <td th:text="${appointment.isConfirmation() ? 'Confirmed':'Not confirmed'}"></td>
+        <!--
         <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a></td>
+        -->
     </tr>
     </tbody>
 </table>

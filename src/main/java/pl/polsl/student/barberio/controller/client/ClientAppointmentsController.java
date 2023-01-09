@@ -6,19 +6,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.service.AppointmentService;
+import pl.polsl.student.barberio.service.DutyService;
 
 @Controller
 public class ClientAppointmentsController {
     private AppointmentService appointmentService;
+    private DutyService dutyService;
 
     @GetMapping("/client/appointments")
     public String showTableWithAppointments(Model model, User user) {
-        model.addAttribute(this.appointmentService.getAppointments(user));
+        model.addAttribute("appointments", this.appointmentService.getAppointmentsOfUser(user));
         return "client/appointments";
+    }
+
+    @Autowired
+    public void setAppointmentService(AppointmentService appointmentService, DutyService dutyService) {
+        this.appointmentService = appointmentService;
+        this.dutyService = dutyService;
     }
 
     @Autowired
     public void setAppointmentService(AppointmentService appointmentService) {
         this.appointmentService = appointmentService;
+    }
+
+    @Autowired
+    public void setDutyService(DutyService dutyService) {
+        this.dutyService = dutyService;
     }
 }
