@@ -14,8 +14,9 @@ import pl.polsl.student.barberio.repository.UserRepository;
 public class DevelopmentConfig {
     private UserRepository userRepository;
     private UserAuthorityRepository userAuthorityRepository;
+
     @Bean
-    public void addTestUsers(){
+    public void addTestUsers() {
         User user = new User();
         user.setFirstName("Tom");
         user.setLastName("Lee");
@@ -42,10 +43,12 @@ public class DevelopmentConfig {
 
 
     }
+
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Autowired
     public void setUserAuthorityRepository(UserAuthorityRepository userAuthorityRepository) {
         this.userAuthorityRepository = userAuthorityRepository;

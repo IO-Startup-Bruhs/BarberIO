@@ -8,20 +8,18 @@ import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.model.UserAuthority;
 import pl.polsl.student.barberio.repository.UserAuthorityRepository;
 import pl.polsl.student.barberio.repository.UserRepository;
-import java.util.List;
-
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private UserRepository userRepository;
     private UserAuthorityRepository userAuthorityRepository;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Optional<User> signupUser(SignupForm form) {
-        if (this.userRepository.existsByEmail(form.getEmail())){
+        if (this.userRepository.existsByEmail(form.getEmail())) {
             return Optional.empty();
         }
         var user = new User();
@@ -39,15 +37,15 @@ public class UserService {
         return Optional.of(user);
     }
 
-    public Optional<User> getUserByEmail(String email){
+    public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(this.userRepository.getUserByEmail(email));
     }
 
-    public List<UserAuthority> getUsersAuthorities(User user){
+    public List<UserAuthority> getUsersAuthorities(User user) {
         return this.userAuthorityRepository.getAllByUserId(user.getId());
     }
 
-    public List<User> getUsersWithAuthority(String authority){
+    public List<User> getUsersWithAuthority(String authority) {
 
 //        Iterable<UserAuthority> allList=userAuthorityRepository.findAll();
 //        List<Optional<User>> result=new ArrayList<>();

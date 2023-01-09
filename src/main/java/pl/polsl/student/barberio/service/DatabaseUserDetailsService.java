@@ -17,7 +17,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var userOptional = userService.getUserByEmail(username);
-        if (userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             var user = userOptional.get();
             var grantedAuthorities = userService.getUsersAuthorities(user).stream().map(userAuthority -> new SimpleGrantedAuthority(userAuthority.getRole())).collect(Collectors.toList());
             return new DatabaseUserDetails(user, grantedAuthorities);

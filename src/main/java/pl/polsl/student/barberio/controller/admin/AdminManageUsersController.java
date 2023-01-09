@@ -7,5 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminManageUsersController {
     @GetMapping("/admin/manageUsers")
-    public String view(Model model) {return "admin/manageusers";}
+    public String view(Model model) {
+        return "admin/manageusers";
+    }
 }

@@ -15,7 +15,12 @@ import javax.validation.Valid;
 
 @Controller
 public class SignupController {
-    private UserService userService;
+    private final UserService userService;
+
+    @Autowired
+    public SignupController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/signup")
     public String view(@ModelAttribute("form") SignupForm form, Model model) {
@@ -24,18 +29,13 @@ public class SignupController {
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("form") @Valid SignupForm form, BindingResult bindingResult, Model model) {
-        if (!bindingResult.hasErrors()){
+        if (!bindingResult.hasErrors()) {
             var registeredUserOptional = this.userService.signupUser(form);
-            if (registeredUserOptional.isPresent()){
+            if (registeredUserOptional.isPresent()) {
                 return "redirect:/signin";
             }
             bindingResult.addError(new ObjectError("email", "User with this email already exists."));
         }
         return "signup";
-    }
-
-    @Autowired
-    public SignupController(UserService userService) {
-        this.userService = userService;
     }
 }

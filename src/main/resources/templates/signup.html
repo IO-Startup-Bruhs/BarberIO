@@ -8,35 +8,35 @@
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
 <body>
-    <main class="ui text container">
-        <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.SignupForm"*/-->
-        <form th:action="@{/signup}" class="ui form" th:object="${form}" method="POST">
-            <div th:class="${#fields.hasErrors('email')}? 'field error' : 'field'">
-                <label>E-Mail</label>
-                <input type="email" name="email" th:field="*{email}" placeholder="mike@wazowsky.inc">
-            </div>
-            <div th:class="${#fields.hasErrors('password')}? 'field error' : 'field'">
-                <label>Password</label>
-                <input type="password" name="password" th:field="*{password}" placeholder="***** ***">
-            </div>
-            <div th:class="${#fields.hasErrors('confirmPassword')}? 'field error' : 'field'">
-                <label>Confirm password</label>
-                <input type="password" name="password" th:field="*{confirmPassword}" placeholder="***** ***">
-            </div>
-            <div th:class="${#fields.hasErrors('firstName')}? 'field error' : 'field'">
-                <label>First name</label>
-                <input type="text" name="firstName" th:field="*{firstName}" placeholder="Mike">
-            </div>
-            <div th:class="${#fields.hasErrors('lastName')}? 'field error' : 'field'">
-                <label>Last name</label>
-                <input type="text" name="lastName" th:field="*{lastName}" placeholder="Wazowsky">
-            </div>
-            <div th:class="${#fields.hasErrors('phoneNumber')}? 'field error' : 'field'">
-                <label>Phone number</label>
-                <input type="text" name="phoneNumber" th:field="*{phoneNumber}" placeholder="666666666">
-            </div>
-            <button class="ui button" type="submit">Submit</button>
-        </form>
-    </main>
+<main class="ui text container">
+    <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.SignupForm"*/-->
+    <form th:action="@{/signup}" class="ui form" th:object="${form}" method="POST">
+        <div th:class="${#fields.hasErrors('email')}? 'field error' : 'field'">
+            <label>E-Mail</label>
+            <input type="email" name="email" th:field="*{email}" placeholder="mike@wazowsky.inc">
+        </div>
+        <div th:class="${#fields.hasErrors('password')}? 'field error' : 'field'">
+            <label>Password</label>
+            <input type="password" name="password" th:field="*{password}" placeholder="***** ***">
+        </div>
+        <div th:class="${#fields.hasErrors('confirmPassword')}? 'field error' : 'field'">
+            <label>Confirm password</label>
+            <input type="password" name="password" th:field="*{confirmPassword}" placeholder="***** ***">
+        </div>
+        <div th:class="${#fields.hasErrors('firstName')}? 'field error' : 'field'">
+            <label>First name</label>
+            <input type="text" name="firstName" th:field="*{firstName}" placeholder="Mike">
+        </div>
+        <div th:class="${#fields.hasErrors('lastName')}? 'field error' : 'field'">
+            <label>Last name</label>
+            <input type="text" name="lastName" th:field="*{lastName}" placeholder="Wazowsky">
+        </div>
+        <div th:class="${#fields.hasErrors('phoneNumber')}? 'field error' : 'field'">
+            <label>Phone number</label>
+            <input type="text" name="phoneNumber" th:field="*{phoneNumber}" placeholder="666666666">
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+</main>
 </body>
 </html>
