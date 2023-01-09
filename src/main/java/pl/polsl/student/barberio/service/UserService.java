@@ -9,13 +9,19 @@ import pl.polsl.student.barberio.model.UserAuthority;
 import pl.polsl.student.barberio.repository.UserAuthorityRepository;
 import pl.polsl.student.barberio.repository.UserRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
     private UserRepository userRepository;
     private UserAuthorityRepository userAuthorityRepository;
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User signupUser(SignupForm form) {
+    public Optional<User> signupUser(SignupForm form) {
+        if (this.userRepository.existsByEmail(form.getEmail())){
+            return Optional.empty();
+        }
         var user = new User();
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
@@ -28,7 +34,15 @@ public class UserService {
         userAuthority.setUserId(user.getId());
         userAuthority.setRole("ROLE_CLIENT");
         this.userAuthorityRepository.save(userAuthority);
-        return user;
+        return Optional.of(user);
+    }
+
+    public Optional<User> getUserByEmail(String email){
+        return Optional.ofNullable(this.userRepository.getUserByEmail(email));
+    }
+
+    public List<UserAuthority> getUsersAuthorities(User user){
+        return this.userAuthorityRepository.getAllByUserId(user.getId());
     }
 
     @Autowired
