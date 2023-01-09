@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BarberIO</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+</head>
+
+<body>
+<main class="ui text container">
+
+
+
+        <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.DutyForm"*/-->
+        <form th:action="@{/admin/managesalon}" class="ui form" th:object="${form}" method="POST">
+            <div th:class="${#fields.hasErrors('name')}? 'field error' : 'field'">
+                <label>Name</label>
+                <input type="text" name="name" th:field="*{name}" placeholder="Duty Name">
+            </div>
+            <div th:class="${#fields.hasErrors('price')}? 'field error' : 'field'">
+                <label>Price</label>
+                <input type="text" name="price" th:field="*{price}" placeholder="45">
+            </div>
+            <div th:class="${#fields.hasErrors('duration')}? 'field error' : 'field'">
+                <label>Duration</label>
+                <input type="text" name="duration" th:field="*{duration}" placeholder="30">
+            </div>
+
+            <label th:class="${#fields.hasErrors('doneBy')}? 'ui pointing below red basic label' : 'ui basic label'">Done by:</label>
+                <div th:each="employee : ${employees}">
+                    <input type="checkbox" class="ui checkbox" th:value="${employee.id}" th:name="doneBy" th:text="${employee.firstName}" />
+                </div>
+
+
+            <button class="ui button" type="submit">Submit</button>
+        </form>
+</main>
+</body>
+</html>
