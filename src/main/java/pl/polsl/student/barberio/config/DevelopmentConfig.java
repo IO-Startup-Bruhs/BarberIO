@@ -24,10 +24,10 @@ public class DevelopmentConfig {
         userRepository.save(user);
 
         User user2 = new User();
-        user2.setFirstName("Tom");
-        user2.setLastName("Holland");
+        user2.setFirstName("Mike");
+        user2.setLastName("Wazowsky");
         user2.setPassword("password");
-        user2.setEmail("tom.holland@mail.com");
+        user2.setEmail("mike.holland@mail.com");
         userRepository.save(user2);
 
         UserAuthority userAuthorityEmployee = new UserAuthority();
@@ -36,7 +36,7 @@ public class DevelopmentConfig {
         userAuthorityRepository.save(userAuthorityEmployee);
 
         UserAuthority userAuthorityClient = new UserAuthority();
-        userAuthorityClient.setRole("ROLE_CLIENT");
+        userAuthorityClient.setRole("ROLE_EMPLOYEE");
         userAuthorityClient.setUserId(user2.getId());
         userAuthorityRepository.save(userAuthorityClient);
 

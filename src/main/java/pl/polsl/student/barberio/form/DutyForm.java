@@ -6,19 +6,20 @@ import pl.polsl.student.barberio.model.User;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
 public class DutyForm {
     @NotEmpty
-    @Size(min = 4, max = 64)
+    @Size(min = 3, max = 64)
     private String name;
-    @NotEmpty
+    @Min(10)
     private int price;
-    @NotEmpty
     @Min(30)
     private int duration;
+    @NotNull
     @NotEmpty
     private List<User> doneBy;
 
