@@ -6,5 +6,6 @@ import pl.polsl.student.barberio.model.Appointment;
 import java.util.List;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
-    List<Appointment> findByCustomer_Id(long id);
+    List<Appointment> findByCustomerId(long id);
+    void deleteAppointmentById(long id);
 }

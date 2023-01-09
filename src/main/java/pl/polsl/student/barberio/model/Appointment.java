@@ -21,5 +21,4 @@ public class Appointment {
     private boolean confirmation;
     @OneToOne
     private AppointmentFeedback feedback;
-
 }
