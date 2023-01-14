@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Appointments</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
 <body>
+<h1>All appointments</h1>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Duty</th>
+        <th>Client</th>
+        <th>Employee</th>
+        <th>Confirmed</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="allAppointments" type="java.util.List"*/-->
+    <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
+    <!--/*@thymesVar id="appointmentRepository" type="package pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
+    <!--/*@thymesVar id="appointmentService" type="pl.polsl.student.barberio.service.AppointmentService"*/-->
+    <tr th:each="appointment:${allAppointments}">
+        <td th:text="${appointment.getDate().toString()}"></td>
+        <td th:text="${appointment.getDuty().getName()}"></td>
+        <td th:text="${appointment.getCustomer().getFirstName()}+${appointment.getCustomer().getLastName()}"></td>
+        <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+        <td th:switch="${appointment.isConfirmation()}">
+            <span th:case="true">Confirmed</span>
+            <a class="ui label" th:case="false" th:href="@{appointment.setConfirmation(true)}">Confirm</a>
 
+        </td>
+
+        <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a>
+            <a class="ui label" >Update</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

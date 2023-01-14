@@ -24,7 +24,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.formLogin().loginPage("/login").permitAll();
-        http.authorizeRequests().antMatchers("/res/fomanticui/**", "/login", "/", "/signup").permitAll().antMatchers("/client/**").hasAnyRole("CLIENT", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/res/fomanticui/**", "/login", "/", "/signup").permitAll()
+                .antMatchers("/client/**").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers("/employee/**").hasAnyAuthority("ADMIN","EMPLOYEE")
+                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated();
         return http.build();
     }
 
