@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,44 @@
 </head>
 <body>
     <div th:fragment="menubar">
+        <div class="ui raised segments">
 
+            <div class="ui top fixed inverted menu">
+
+                <div class="item">
+                    <img alt="IO-Startup-Bruhs logo"
+                         src="https://avatars.githubusercontent.com/u/117726947?s=400&u=8c640b29d3c5d3152574f7d05f58e393ace513ce&v=4">
+                </div>
+
+                <div sec:authorize="isAnonymous()" class="right aligned menu">
+                    <a th:href="@{/signup}" class="ui item">
+                        <i class="pen icon" style="visibility: visible;">
+                        </i>
+                        <span class="ui medium text">Sign up</span>
+
+                    </a>
+
+                    <a th:href="@{/login}" class="ui item">
+                        <i class="user icon" style="visibility: visible;">
+                        </i>
+                        <span class="ui medium text">Sign in</span>
+                    </a>
+
+                </div>
+                <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
+                <div sec:authorize="isAuthenticated()" th:with="user=${#authorization.getAuthentication().principal.getUser()}" class="right aligned menu">
+                    <a class="ui item">
+                        <i class="user icon" style="visibility: visible;">
+                        </i>
+                        <span th:text="${user.firstName}" class="ui medium text"></span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
 </body>
 </html>
