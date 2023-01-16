@@ -5,14 +5,13 @@ import org.springframework.stereotype.Service;
 import pl.polsl.student.barberio.form.DutyForm;
 import pl.polsl.student.barberio.model.Duty;
 import pl.polsl.student.barberio.repository.DutyRepository;
-import pl.polsl.student.barberio.repository.UserAuthorityRepository;
+
+import java.util.Optional;
 
 
 @Service
 public class DutyService {
     private DutyRepository dutyRepository;
-
-    private UserAuthorityRepository userAuthorityRepository;
 
     public Duty createDuty(DutyForm form) {
         var duty = new Duty();
@@ -25,6 +24,13 @@ public class DutyService {
         return duty;
     }
 
+    public Iterable<Duty> getAllDuties(){
+        return this.dutyRepository.findAll();
+    }
+
+    public Optional<Duty> getDutyById(long id){
+        return this.dutyRepository.findById(id);
+    }
 
     @Autowired
     public void setDutyRepository(DutyRepository dutyRepository) {
