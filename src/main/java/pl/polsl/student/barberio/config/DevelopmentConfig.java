@@ -92,7 +92,6 @@ public class DevelopmentConfig {
         appointment1.setDate(new Date(2023-1900, Calendar.JANUARY,20,14,30));
         appointment1.setCustomer(user2);
         appointment1.setEmployee(user);
-        appointment1.setConfirmation(false);
         appointment1.setDuty(duty1);
         appointmentRepository.save(appointment1);
 
@@ -100,7 +99,6 @@ public class DevelopmentConfig {
         appointment2.setDate(new Date(2023-1900, Calendar.JANUARY,22,14,30));
         appointment2.setCustomer(client2);
         appointment2.setEmployee(user);
-        appointment2.setConfirmation(false);
         appointment2.setDuty(duty1);
         appointmentRepository.save(appointment2);
 
