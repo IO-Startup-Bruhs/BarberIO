@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<form th:action="@{/client/newAppointment}" method="post">
+    <label for="formName">Date: </label><input type="text" id="formName" name="formValue">
+    <button type="submit">Next</button>
+</form>
 </body>
 </html>
