@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,5 +29,5 @@ public class Duty {
     @ManyToMany
     @NotNull
     @NotEmpty
-    private List<User> doneBy;
+    private List<User> doneBy=new ArrayList<>();
 }

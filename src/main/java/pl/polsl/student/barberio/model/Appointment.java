@@ -18,7 +18,9 @@ public class Appointment {
     @ManyToOne
     private Duty duty;
     private Date date;
-    private boolean confirmation;
+    private boolean confirmation=false;
+
+    private boolean cancelled =false;
     @OneToOne
     private AppointmentFeedback feedback;
 }

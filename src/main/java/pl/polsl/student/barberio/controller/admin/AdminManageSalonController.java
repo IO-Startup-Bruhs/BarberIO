@@ -21,13 +21,13 @@ public class AdminManageSalonController {
 
     @GetMapping("/admin/managesalon")
     public String view(@ModelAttribute("form") DutyForm form, Model model) {
-        model.addAttribute("employees", userService.getUsersWithAuthority("ROLE_EMPLOYEE"));
+        model.addAttribute("employees", userService.getUsersWithAuthority("EMPLOYEE"));
         return "admin/managesalon";
     }
 
     @PostMapping("/admin/managesalon")
     public String addDuty(@ModelAttribute("form") @Valid DutyForm form, BindingResult bindingResult, Model model) {
-        model.addAttribute("employees", userService.getUsersWithAuthority("ROLE_EMPLOYEE"));
+        model.addAttribute("employees", userService.getUsersWithAuthority("EMPLOYEE"));
         if (!bindingResult.hasErrors()) {
             this.dutyService.createDuty(form);
             return "redirect:/admin/managesalon";
