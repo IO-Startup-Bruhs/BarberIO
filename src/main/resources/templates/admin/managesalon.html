@@ -13,32 +13,46 @@
 <body>
 <main class="ui text container">
 
+    <div class="ui hidden divider"></div>
 
-    <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.DutyForm"*/-->
-    <form th:action="@{/admin/managesalon}" class="ui form" th:object="${form}" method="POST">
-        <div th:class="${#fields.hasErrors('name')}? 'field error' : 'field'">
-            <label>Name</label>
-            <input type="text" name="name" th:field="*{name}" placeholder="Duty Name">
-        </div>
-        <div th:class="${#fields.hasErrors('price')}? 'field error' : 'field'">
-            <label>Price</label>
-            <input type="text" name="price" th:field="*{price}" placeholder="45">
-        </div>
-        <div th:class="${#fields.hasErrors('duration')}? 'field error' : 'field'">
-            <label>Duration</label>
-            <input type="text" name="duration" th:field="*{duration}" placeholder="30">
+    <div class="ui raised segments">
+
+        <div class="ui center aligned segment">
+            <h1>Add Duty:</h1>
         </div>
 
-        <label th:class="${#fields.hasErrors('doneBy')}? 'ui pointing below red basic label' : 'ui basic label'">Done
-            by:</label>
-        <div th:each="employee : ${employees}">
-            <input type="checkbox" class="ui checkbox" th:value="${employee.id}" th:name="doneBy"
-                   th:text="${employee.firstName}"/>
+        <div class="ui very padded segment">
+
+            <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.DutyForm"*/-->
+            <form th:action="@{/admin/managesalon}" class="ui form" th:object="${form}" method="POST">
+                <div th:class="${#fields.hasErrors('name')}? 'field error' : 'field'">
+                    <label>Name</label>
+                    <input type="text" name="name" th:field="*{name}" placeholder="Duty Name">
+                </div>
+                <div th:class="${#fields.hasErrors('price')}? 'field error' : 'field'">
+                    <label>Price</label>
+                    <input type="text" name="price" th:field="*{price}" placeholder="45">
+                </div>
+                <div th:class="${#fields.hasErrors('duration')}? 'field error' : 'field'">
+                    <label>Duration</label>
+                    <input type="text" name="duration" th:field="*{duration}" placeholder="30">
+                </div>
+
+                <label th:class="${#fields.hasErrors('doneBy')}? 'ui pointing below red basic label' : 'ui basic label'">Done by:</label>
+
+                <div class="ui hidden divider"></div>
+
+                <div th:each="employee : ${employees}">
+                    <input type="checkbox" class="ui checkbox" th:value="${employee.id}" th:name="doneBy"
+                           th:text="${employee.firstName}"/>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+                <button class="ui button" type="submit">Submit</button>
+            </form>
         </div>
-
-
-        <button class="ui button" type="submit">Submit</button>
-    </form>
+    </div>
 </main>
 </body>
 </html>

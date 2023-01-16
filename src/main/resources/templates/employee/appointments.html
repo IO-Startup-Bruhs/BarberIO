@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Appointments</title>
@@ -8,38 +9,66 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
-<body>
-<h1>All appointments</h1>
-<table class="ui celled table">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Duty</th>
-        <th>Client</th>
-        <th>Employee</th>
-        <th>Confirmed</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--/*@thymesVar id="allAppointments" type="java.util.List"*/-->
-    <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
-    <!--/*@thymesVar id="appointmentService" type="pl.polsl.student.barberio.service.AppointmentService"*/-->
-    <tr th:each="appointment:${allAppointments}">
-        <td th:text="${appointment.getDate().toString()}"></td>
-        <td th:text="${appointment.getDuty().getName()}"></td>
-        <td th:text="${appointment.getCustomer().getFirstName()}+${appointment.getCustomer().getLastName()}"></td>
-        <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
-        <td th:switch="${appointment.isConfirmation()}">
-            <div th:case="true">Confirmed</div>
-            <a class="ui button" th:case="false" th:href="@{/confirmAppointment/{id}(id=${appointment.getId()})}">Confirm</a>
-        </td>
 
-        <td ><a th:href="@{/cancelAppointment/{id}(id=${appointment.getId()})}" th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}">
-            Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<body>
+<main class="ui container">
+
+    <div class="ui hidden divider"></div>
+
+    <div class="ui center aligned segment">
+        <h1>All appointments</h1>
+    </div>
+
+    <table class="ui celled table">
+
+        <thead>
+        <tr>
+            <th>Date <i class="calendar day icon"></i></th>
+            <th>Duty <i class="cut icon"></i></th>
+            <th>Client <i class="user icon"></i></th>
+            <th>Employee <i class="user outline icon"></i></th>
+            <th>Status <i class="hourglass start icon"></i></th>
+            <th>Actions <i class="cog icon"></i></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!--/*@thymesVar id="allAppointments" type="java.util.List"*/-->
+        <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
+        <!--/*@thymesVar id="appointmentService" type="pl.polsl.student.barberio.service.AppointmentService"*/-->
+        <tr th:each="appointment:${allAppointments}"
+            th:class="${appointment.isCancelled() ? 'red colored disabled' : (appointment.isConfirmation() ? 'green colored' : 'yellow colored')}">
+
+            <td th:text="${appointment.getDate().toString()}"></td>
+
+            <td th:text="${appointment.getDuty().getName()}"></td>
+
+            <td th:text="${appointment.getCustomer().getFirstName()}+${appointment.getCustomer().getLastName()}"></td>
+
+            <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+
+            <td th:switch="${appointment.isCancelled()}">
+                <div th:case="true">Cancelled</div>
+                <div th:case="false">
+                    <div th:switch="${appointment.isConfirmation()}">
+                        <div th:case="true">Confirmed</div>
+                        <div th:case="false">Not confirmed</div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <a th:href="@{/cancelAppointment/{id}(id=${appointment.getId()})}"
+                   th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}">Cancel</a>
+
+                <a th:href="@{/confirmAppointment/{id}(id=${appointment.getId()})}"
+                   th:class="${appointment.isCancelled() || appointment.isConfirmation() ? 'ui disabled button' : 'ui button'}">Confirm</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</main>
 </body>
+
 </html>
