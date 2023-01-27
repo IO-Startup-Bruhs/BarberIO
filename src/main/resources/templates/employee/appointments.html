@@ -8,23 +8,29 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+    <style>
+        .customBackgroundColor{
+            background-color: #252525;
+        }
+    </style>
 </head>
 
-<body>
+<body class = "ui customBackgroundColor">
+<div th:replace="fragments/menubar :: menubar"></div>
+
 <div class="fluid container">
 
-    <div th:replace="fragments/menubar :: menubar"></div>
     <div class="ui hidden divider"></div>
 
 <main class="ui container">
-
+    <div class="ui hidden divider"></div>
     <div class="ui hidden divider"></div>
 
-    <div class="ui center aligned segment">
+    <div class="ui center aligned inverted segment">
         <h1>All appointments</h1>
     </div>
 
-    <table class="ui celled table">
+    <table class="ui celled inverted table">
 
         <thead>
         <tr>
@@ -75,6 +81,7 @@
     </table>
 </main>
 </div>
+
 </body>
 
 </html>

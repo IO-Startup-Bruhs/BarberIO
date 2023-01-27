@@ -8,22 +8,29 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+<style>
+    .customBackgroundColor{
+        background-color: #252525;
+    }
+</style>
 </head>
-<body>
+
+<body class="ui customBackgroundColor">
 
 <main class="ui text container">
 
     <div class="ui hidden divider"></div>
 
+
     <div class="ui raised segments">
 
-        <div class="ui center aligned segment">
+        <div class="ui center aligned inverted segment">
             <h1>Sign in:</h1>
         </div>
 
-        <div class="ui very padded segment">
+        <div class="ui very padded inverted segment">
 
-            <form name="f" th:action="@{/login}" method="POST" class="ui form">
+            <form name="f" th:action="@{/login}" method="POST" class="ui inverted form">
 
                 <div class="field">
                     <label>Email</label>
@@ -46,4 +53,5 @@
 </main>
 
 </body>
+
 </html>
