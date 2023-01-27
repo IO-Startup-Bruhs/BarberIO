@@ -7,71 +7,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-    <div th:fragment="menubar">
-        <div class="ui raised segments">
+<div th:fragment="menubar">
+    <div class="ui raised segments">
 
-            <div class="ui top fixed inverted menu">
+        <div class="ui top fixed inverted menu">
 
-                <a class="item" th:href="@{/}">
-                    <img alt="IO-Startup-Bruhs logo"
-                         src="https://avatars.githubusercontent.com/u/117726947?s=400&u=8c640b29d3c5d3152574f7d05f58e393ace513ce&v=4">
+            <a class="item" th:href="@{/}">
+                <img alt="IO-Startup-Bruhs logo"
+                     src="https://avatars.githubusercontent.com/u/117726947?s=400&u=8c640b29d3c5d3152574f7d05f58e393ace513ce&v=4">
+            </a>
+
+            <div sec:authorize="isAnonymous()" class="right aligned menu">
+                <a th:href="@{/signup}" class="ui item">
+                    <i class="pen icon" style="visibility: visible;">
+                    </i>
+                    <span class="ui medium text">Sign up</span>
+
                 </a>
 
-                <div sec:authorize="isAnonymous()" class="right aligned menu">
-                    <a th:href="@{/signup}" class="ui item">
-                        <i class="pen icon" style="visibility: visible;">
-                        </i>
-                        <span class="ui medium text">Sign up</span>
+                <a th:href="@{/login}" class="ui item">
+                    <i class="user icon" style="visibility: visible;">
+                    </i>
+                    <span class="ui medium text">Sign in</span>
+                </a>
 
-                    </a>
+            </div>
+            <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
+            <div sec:authorize="isAuthenticated()" th:with="user=${#authorization.getAuthentication().principal.getUser()}" class="right aligned menu">
+                <a class="ui item">
+                    <i class="user icon" style="visibility: visible;">
+                    </i>
+                    <span th:text="${user.firstName}" class="ui medium text"></span>
+                </a>
+                <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/newAppointment}" class="ui item">
+                    <span class="ui medium text">New Appointment</span>
+                </a>
+                <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/appointments}" class="ui item">
+                    <span class="ui medium text">My Appointments</span>
+                </a>
+                <a sec:authorize="hasAnyAuthority('EMPLOYEE','ADMIN')" th:href="@{/employee/newAppointment}" class="ui item">
+                    <span class="ui medium text">New Appointment</span>
+                </a>
+                <a sec:authorize="hasAnyAuthority('EMPLOYEE','ADMIN')" th:href="@{/employee/appointments}" class="ui item">
+                    <span class="ui medium text">Appointments</span>
+                </a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/manageusers}" class="ui item">
+                    <span class="ui medium text">Clients</span>
+                </a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/manageemployees}" class="ui item">
+                    <span class="ui medium text">Employees</span>
+                </a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/managesalon}" class="ui item">
+                    <span class="ui medium text">Salon</span>
+                </a>
 
-                    <a th:href="@{/login}" class="ui item">
-                        <i class="user icon" style="visibility: visible;">
-                        </i>
-                        <span class="ui medium text">Sign in</span>
-                    </a>
-
-                </div>
-                <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
-                <div sec:authorize="isAuthenticated()" th:with="user=${#authorization.getAuthentication().principal.getUser()}" class="right aligned menu">
-                    <a class="ui item">
-                        <i class="user icon" style="visibility: visible;">
-                        </i>
-                        <span th:text="${user.firstName}" class="ui medium text"></span>
-                    </a>
-                    <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/newAppointment}" class="ui item">
-                        <span class="ui medium text">New Appointment</span>
-                    </a>
-                    <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/appointments}" class="ui item">
-                        <span class="ui medium text">My Appointments</span>
-                    </a>
-                    <a sec:authorize="hasAnyAuthority('EMPLOYEE','ADMIN')" th:href="@{/employee/newAppointment}" class="ui item">
-                        <span class="ui medium text">New Appointment</span>
-                    </a>
-                    <a sec:authorize="hasAnyAuthority('EMPLOYEE','ADMIN')" th:href="@{/employee/appointments}" class="ui item">
-                        <span class="ui medium text">Appointments</span>
-                    </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/manageusers}" class="ui item">
-                        <span class="ui medium text">Clients</span>
-                    </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/manageemployees}" class="ui item">
-                        <span class="ui medium text">Employees</span>
-                    </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/managesalon}" class="ui item">
-                        <span class="ui medium text">Salon</span>
-                    </a>
-
-                    <a th:href="@{/logout}" class="ui item">
-                        <span class="ui medium text">Log out</span>
-                    </a>
-
-                </div>
-
-
+                <a th:href="@{/logout}" class="ui item">
+                    <span class="ui medium text">Log out</span>
+                </a>
 
             </div>
 
+
+
         </div>
+
     </div>
+</div>
 </body>
 </html>

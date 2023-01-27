@@ -3,36 +3,58 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Your planned appointments</title>
+    <title>Appointments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+    <style>
+        .customBackgroundColor{
+            background-color: #252525;
+        }
+    </style>
 </head>
-<body>
-<table class="ui celled table">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Duty</th>
-        <th>Employee</th>
-        <th>Confirmed</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--/*@thymesVar id="appointments" type="java.util.List"*/-->
-    <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
-    <!--/*@thymesVar id="appointmentRepository" type="package pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
-    <tr th:each="appointment:${appointments}">
-        <td th:text="${appointment.getDate().toString()}"></td>
-        <td th:text="${appointment.getDuty().getName()}"></td>
-        <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
-        <td th:text="${appointment.isConfirmation() ? 'Confirmed':'Not confirmed'}"></td>
-        <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<body class = "ui customBackgroundColor">
+<div th:replace="fragments/menubar :: menubar"></div>
+<div class="fluid container">
+
+    <div class="ui hidden divider"></div>
+
+    <main class="ui container">
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+
+        <div class="ui center aligned inverted segment">
+            <h1>All appointments</h1>
+        </div>
+
+        <table class="ui celled inverted table">
+            <thead>
+            <tr>
+                <th>Date <i class="calendar day icon"></i></th>
+                <th>Duty <i class="cut icon"></i></th>
+                <th>Employee <i class="user outline icon"></i></th>
+                <th>Status <i class="hourglass start icon"></i></th>
+                <th>Actions <i class="cog icon"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="appointments" type="java.util.List"*/-->
+            <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
+            <!--/*@thymesVar id="appointmentRepository" type="package pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
+            <tr th:each="appointment:${appointments}"
+                th:class="${appointment.isCancelled() ? 'inverted red colored disabled' : (appointment.isConfirmation() ? 'green colored' : 'yellow colored')}">
+                <td th:text="${appointment.getDate().toString()}"></td>
+                <td th:text="${appointment.getDuty().getName()}"></td>
+                <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+                <td th:text="${appointment.isCancelled() ? 'Cancelled' : (appointment.isConfirmation() ? 'Confirmed' : 'Not Confirmed')}"></td>
+                <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
 </body>
 </html>
