@@ -32,7 +32,7 @@ public class UserService {
         user = this.userRepository.save(user);
         var userAuthority = new UserAuthority();
         userAuthority.setUserId(user.getId());
-        userAuthority.setRole("ROLE_CLIENT");
+        userAuthority.setRole("CLIENT");
         this.userAuthorityRepository.save(userAuthority);
         return Optional.of(user);
     }
