@@ -3,6 +3,7 @@ package pl.polsl.student.barberio.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.polsl.student.barberio.form.NewEmployeeForm;
 import pl.polsl.student.barberio.form.SignupForm;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.model.UserAuthority;
@@ -18,7 +19,7 @@ public class UserService {
     private UserRepository userRepository;
     private UserAuthorityRepository userAuthorityRepository;
 
-    public Optional<User> signupUser(SignupForm form) {
+    public Optional<User> signupClient(SignupForm form) {
         if (this.userRepository.existsByEmail(form.getEmail())) {
             return Optional.empty();
         }
@@ -37,6 +38,24 @@ public class UserService {
         return Optional.of(user);
     }
 
+    public Optional<User> newEmployee(NewEmployeeForm form){
+        if (this.userRepository.existsByEmail(form.getEmail())) {
+            return Optional.empty();
+        }
+        var user = new User();
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setPhoneNumber(form.getPhoneNumber());
+        var encodedPassword = this.passwordEncoder.encode(form.getPassword());
+        user.setPassword(encodedPassword);
+        user = this.userRepository.save(user);
+        var userAuthority = new UserAuthority();
+        userAuthority.setUserId(user.getId());
+        userAuthority.setRole("EMPLOYEE");
+        this.userAuthorityRepository.save(userAuthority);
+        return Optional.of(user);
+    }
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(this.userRepository.getUserByEmail(email));
     }

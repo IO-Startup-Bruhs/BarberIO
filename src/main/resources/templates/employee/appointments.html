@@ -11,6 +11,11 @@
 </head>
 
 <body>
+<div class="fluid container">
+
+    <div th:replace="fragments/menubar :: menubar"></div>
+    <div class="ui hidden divider"></div>
+
 <main class="ui container">
 
     <div class="ui hidden divider"></div>
@@ -69,6 +74,7 @@
         </tbody>
     </table>
 </main>
+</div>
 </body>
 
 </html>

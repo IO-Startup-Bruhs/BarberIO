@@ -3,10 +3,68 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Clients</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
 <body>
+<div class="fluid container">
+    <div th:replace="fragments/menubar :: menubar"></div>
+    <div class="ui hidden divider"></div>
+
+    <main class="ui container">
+
+        <div class="ui hidden divider"></div>
+
+        <div class="ui center aligned segment">
+            <h1>All Clients</h1>
+        </div>
+
+        <div class="ui hidden divider"></div>
+
+        <table class="ui celled table">
+
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Actions <i class="cog icon"></i></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="allClients" type="java.util.List"*/-->
+            <!--/*@thymesVar id="client" type="pl.polsl.student.barberio.model.User"*/-->
+            <tr th:each="client:${allClients}">
+
+                <td th:text="${client.getId()}"></td>
+
+                <td th:text="${client.getFirstName()}"></td>
+
+                <td th:text="${client.getLastName()}"></td>
+
+                <td th:text="${client.getPhoneNumber()}"></td>
+
+                <td th:text="${client.getEmail()}"></td>
+
+                <td>
+                    <a class="ui button">Update?</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+    </main>
+
+</div>
+
 
 </body>
 </html>
