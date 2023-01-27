@@ -2,19 +2,22 @@ package pl.polsl.student.barberio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.polsl.student.barberio.form.NewAppointmentForm;
 import pl.polsl.student.barberio.model.Appointment;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.repository.AppointmentRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
 
     private AppointmentRepository appointmentRepository;
 
-
-    public void setCancelled(long appointmentId){
+    public void setCancelled(long appointmentId) {
         Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
         appointment.ifPresent(a -> {
             a.setCancelled(true);
@@ -23,7 +26,7 @@ public class AppointmentService {
 
     }
 
-    public void setConfirmed(long appointmentId){
+    public void setConfirmed(long appointmentId) {
         Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
         appointment.ifPresent(a -> {
             a.setConfirmation(true);
@@ -44,7 +47,17 @@ public class AppointmentService {
         return list;
     }
 
+    public void newAppointmentFromForm(NewAppointmentForm form, User customer) {
+        var appointment = new Appointment();
+        appointment.setEmployee(form.getEmployee());
+        appointment.setDuty(form.getDuty());
+        appointment.setDate(form.getDate());
+        appointment.setCustomer(customer);
+        appointmentRepository.save(appointment);
+    }
+
     @Autowired
-    public void setAppointmentRepository(AppointmentRepository appointmentRepository){
-        this.appointmentRepository=appointmentRepository;}
+    public void setAppointmentRepository(AppointmentRepository appointmentRepository) {
+        this.appointmentRepository = appointmentRepository;
+    }
 }

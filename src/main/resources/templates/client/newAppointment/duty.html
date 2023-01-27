@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/client/newAppointment}" method="post">
+        <select name="formValue">
+            <option th:each="duty : ${availableDuties}" th:text="${duty.getName()}" th:value="${duty.getId()}"></option>
+        </select>
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

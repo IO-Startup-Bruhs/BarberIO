@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BarberIO</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
@@ -13,35 +13,7 @@
 
 <div class="fluid container">
 
-    <div class="ui raised segments">
-
-        <div class="ui top fixed inverted menu">
-
-            <div class="item">
-                <img alt="IO-Startup-Bruhs logo"
-                     src="https://avatars.githubusercontent.com/u/117726947?s=400&u=8c640b29d3c5d3152574f7d05f58e393ace513ce&v=4">
-            </div>
-
-            <div class="right aligned menu">
-                <a th:href="@{/signup}" class="ui item">
-                    <i class="pen icon" style="visibility: visible;">
-                    </i>
-                    <span class="ui medium text">Sign up</span>
-
-                </a>
-
-                <a th:href="@{/login}" class="ui item">
-                    <i class="user icon" style="visibility: visible;">
-                    </i>
-                    <span class="ui medium text">Sign in</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
+    <div th:replace="fragments/menubar :: menubar"></div>
 
     <img alt="barber salon banner with Barber.IO name" class="ui fluid image" src="https://iili.io/H57i6OP.png">
 
@@ -97,13 +69,20 @@
         </div>
 
         <div class="ui very padded segment">
-                <span class="ui large text"><p>Welcome to Barber.io, your premier destination for all of your barbering needs. Our shop has a rich history dating back to the early 20th century, when our founder first opened the doors to serve the community with top-notch haircuts and grooming services.</p>
+            <div class="ui large text"><p>Welcome to Barber.io, your premier destination for all of your barbering
+                needs. Our shop has a rich history dating back to the early 20th century, when our founder first opened
+                the doors to serve the community with top-notch haircuts and grooming services.</p>
 
-                            <p>Over the years, Barber.io has become a beloved institution in the community, known for our skilled barbers, comfortable atmosphere, and commitment to providing the best customer experience possible. From classic cuts to modern styles, our team is equipped to handle any haircut you desire.</p>
+                <p>Over the years, Barber.io has become a beloved institution in the community, known for our skilled
+                    barbers, comfortable atmosphere, and commitment to providing the best customer experience possible.
+                    From classic cuts to modern styles, our team is equipped to handle any haircut you desire.</p>
 
-                    <p>In addition to haircuts, we also offer a variety of other services such as beard trims, hot towel shaves, and facial grooming. Whatever your grooming needs may be, our team is ready to give you the royal treatment.
+                <p>In addition to haircuts, we also offer a variety of other services such as beard trims, hot towel
+                    shaves, and facial grooming. Whatever your grooming needs may be, our team is ready to give you the
+                    royal treatment.
 
-                        We hope to see you soon at Barber.io, where we look forward to giving you the haircut you deserve.</p></span>
+                    We hope to see you soon at Barber.io, where we look forward to giving you the haircut you
+                    deserve.</p></div>
         </div>
 
     </div>

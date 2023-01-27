@@ -101,8 +101,6 @@ public class DevelopmentConfig {
         appointment2.setEmployee(user);
         appointment2.setDuty(duty1);
         appointmentRepository.save(appointment2);
-
-
     }
 
     @Autowired

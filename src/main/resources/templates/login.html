@@ -10,18 +10,39 @@
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
 <body>
-<main class="ui container">
-    <form name="f" th:action="@{/login}" method="POST" class="ui form">
-        <div class="field">
-            <label>Email</label>
-            <input type="text" name="username" placeholder="">
+
+<main class="ui text container">
+
+    <div class="ui hidden divider"></div>
+
+    <div class="ui raised segments">
+
+        <div class="ui center aligned segment">
+            <h1>Sign in:</h1>
         </div>
-        <div class="field">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="">
+
+        <div class="ui very padded segment">
+
+            <form name="f" th:action="@{/login}" method="POST" class="ui form">
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="text" name="username" placeholder="">
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="">
+                </div>
+
+                <button class="ui primary button" type="submit" name="submit">Sign in</button>
+
+            </form>
+
         </div>
-        <button class="ui primary button" type="submit" name="submit">Sign in</button>
-    </form>
+
+    </div>
+
 </main>
 
 </body>
