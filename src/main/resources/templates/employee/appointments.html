@@ -48,7 +48,7 @@
             <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
             <!--/*@thymesVar id="appointmentService" type="pl.polsl.student.barberio.service.AppointmentService"*/-->
             <tr th:each="appointment:${allAppointments}"
-                th:class="${appointment.isCancelled() ? 'inverted red colored disabled' : (appointment.isConfirmation() ? 'green colored' : 'yellow colored')}">
+                th:class="${appointment.isCancelled() ? 'inverted red' : (appointment.isConfirmation() ? 'inverted olive' : 'inverted yellow')}">
 
                 <td th:text="${appointment.getDate().toString()}"></td>
 

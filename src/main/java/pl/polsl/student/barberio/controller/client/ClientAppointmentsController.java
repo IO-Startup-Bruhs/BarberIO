@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import pl.polsl.student.barberio.impl.DatabaseUserDetails;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.service.AppointmentService;
