@@ -12,6 +12,7 @@
             background-color: #252525;
         }
     </style>
+
 </head>
 
 <body class="customBackgroundColor ui">
@@ -27,13 +28,18 @@
         </div>
         <div class="ui hidden divider"></div>
         <div class="ui inverted center aligned segment">
-            <form th:action="@{/client/newAppointment}" method="post" class="ui form">
-                <select name="formValue">
+            <form th:action="@{/client/newAppointment}" method="post">
+                <select name="formValue" class = "ui fluid selection dropdown">
                     <option th:each="duty : ${availableDuties}" th:text="${duty.getName()}" th:value="${duty.getId()}"></option>
                 </select>
                 <div class="ui hidden divider"></div>
                 <button type="submit" class="ui button">Next</button>
             </form>
+            <script>
+                $('.ui.dropdown')
+                    .dropdown()
+                ;
+            </script>
         </div>
 
     </div>

@@ -44,19 +44,19 @@
                     <label>Duration</label>
                     <input type="text" name="duration" th:field="*{duration}" placeholder="30">
                 </div>
-
-                <!--                <label th:class="${#fields.hasErrors('doneBy')}? 'ui pointing below inverted red basic label' : 'ui basic inverted label'">Done by:</label>-->
                 <div class ="ui text">Done by:</div>
-                <div th:class = "${#fields.hasErrors('doneBy')}? 'ui secondary inverted red segment' : 'ui inverted segment'">
-                    <div th:each="employee : ${employees}">
-                        <input type="checkbox" class="ui checkbox" th:value="${employee.id}" th:name="doneBy"
-                               th:text="${employee.firstName}"/>
-                    </div>
-                </div>
+                <select name="doneBy" multiple="" th:class="${#fields.hasErrors('doneBy')}? 'ui fluid dropdown error' : 'ui fluid dropdown'">
+                    <option value="">Employees</option>
+                    <option th:each="employee : ${employees}" th:text="${employee.firstName}" th:value="${employee.id}"></option>
+                </select>
                 <div class="ui hidden divider"></div>
-
                 <button class="ui button" type="submit">Submit</button>
             </form>
+            <script>
+                $('.ui.dropdown')
+                    .dropdown()
+                ;
+            </script>
         </div>
 
     </main>
