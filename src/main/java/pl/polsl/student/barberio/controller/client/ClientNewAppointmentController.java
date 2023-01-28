@@ -32,7 +32,7 @@ public class ClientNewAppointmentController {
 
     @PostMapping("/client/newAppointment")
     public String process(@ModelAttribute("newAppointmentForm") NewAppointmentForm newAppointmentForm, @RequestParam(value = "formValue", required = false) String formValue, Model model, @AuthenticationPrincipal DatabaseUserDetails principal) throws ParseException {
-        System.out.println(principal.getUser().getFirstName());
+        //System.out.println(principal.getUser().getFirstName());
         switch (newAppointmentForm.getCreationStep()) {
             case SELECT_DUTY -> {
                 var dutyId = Long.parseLong(formValue);

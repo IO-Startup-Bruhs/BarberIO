@@ -54,9 +54,9 @@
 
                 <td th:text="${appointment.getDuty().getName()}"></td>
 
-                <td th:text="${appointment.getCustomer().getFirstName()}+${appointment.getCustomer().getLastName()}"></td>
+                <td th:text="${appointment.getCustomer().getFirstName()} + ' ' + ${appointment.getCustomer().getLastName()}"></td>
 
-                <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+                <td th:text="${appointment.getEmployee().getFirstName()} + ' ' + ${appointment.getEmployee().getLastName()}"></td>
 
                 <td th:switch="${appointment.isCancelled()}">
                     <div th:case="true">Cancelled</div>

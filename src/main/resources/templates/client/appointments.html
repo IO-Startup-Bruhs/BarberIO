@@ -46,9 +46,9 @@
                 th:class="${appointment.isCancelled() ? 'inverted red' : (appointment.isConfirmation() ? 'inverted olive' : 'inverted yellow')}">
                 <td th:text="${appointment.getDate().toString()}"></td>
                 <td th:text="${appointment.getDuty().getName()}"></td>
-                <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+                <td th:text="${appointment.getEmployee().getFirstName()} + ' ' + ${appointment.getEmployee().getLastName()}"></td>
                 <td th:text="${appointment.isCancelled() ? 'Cancelled' : (appointment.isConfirmation() ? 'Confirmed' : 'Not Confirmed')}"></td>
-                <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}" th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}"}>Cancel</a>
+                <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}" th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}">Cancel</a>
                 </td>
             </tr>
             </tbody>

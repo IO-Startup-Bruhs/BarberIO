@@ -34,10 +34,10 @@
             </div>
             <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
             <div sec:authorize="isAuthenticated()" th:with="user=${#authorization.getAuthentication().principal.getUser()}" class="right aligned menu">
-                <a class="ui item">
+                <a class="ui item disabled">
                     <i class="user icon" style="visibility: visible;">
                     </i>
-                    <span th:text="${user.firstName}" class="ui medium text"></span>
+                    <span th:text="${user.firstName + ' ' + user.lastName}" class="ui medium text"></span>
                 </a>
                 <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/newAppointment}" class="ui item">
                     <span class="ui medium text">New Appointment</span>

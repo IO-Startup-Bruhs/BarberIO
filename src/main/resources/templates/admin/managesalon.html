@@ -47,7 +47,7 @@
                 <div class ="ui text">Done by:</div>
                 <select name="doneBy" multiple="" th:class="${#fields.hasErrors('doneBy')}? 'ui fluid dropdown error' : 'ui fluid dropdown'">
                     <option value="">Employees</option>
-                    <option th:each="employee : ${employees}" th:text="${employee.firstName}" th:value="${employee.id}"></option>
+                    <option th:each="employee : ${employees}" th:text="${employee.firstName} + ' ' + ${employee.lastName}" th:value="${employee.id}"></option>
                 </select>
                 <div class="ui hidden divider"></div>
                 <button class="ui button" type="submit">Submit</button>
