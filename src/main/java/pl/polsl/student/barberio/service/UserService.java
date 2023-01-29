@@ -56,6 +56,26 @@ public class UserService {
         this.userAuthorityRepository.save(userAuthority);
         return Optional.of(user);
     }
+
+    public Optional<User> updateUser(NewEmployeeForm form){
+
+        var user =userRepository.findById(form.getId());
+        //var user = userRepository.getUserById(form.getId());
+
+        user.ifPresent(u->
+        {
+            u.setEmail(form.getEmail());
+            var encodedPassword = passwordEncoder.encode(form.getPassword());
+            u.setPassword(encodedPassword);
+            u.setFirstName(form.getFirstName());
+            u.setLastName(form.getLastName());
+            u.setPhoneNumber(form.getPhoneNumber());
+            this.userRepository.save(u);
+        });
+
+        return user;
+
+    }
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(this.userRepository.getUserByEmail(email));
     }
@@ -76,6 +96,11 @@ public class UserService {
 
         return userRepository.getUsersWithAuthority(authority);
     }
+
+    public Optional<User> getUserById(long id){
+        return userRepository.findById(id);
+    }
+
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {

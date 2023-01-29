@@ -44,6 +44,17 @@ public class DevelopmentConfig {
         userAuthorityEmployee.setUserId(user.getId());
         userAuthorityRepository.save(userAuthorityEmployee);
 
+        User userr = new User();
+        userr.setFirstName("Tomas");
+        userr.setLastName("Leemon");
+        userr.setPassword(encodedPassword);
+        userr.setEmail("employeee@mail.com");
+        userRepository.save(userr);
+        UserAuthority userAuthorityEmployeee = new UserAuthority();
+        userAuthorityEmployeee.setRole("EMPLOYEE");
+        userAuthorityEmployeee.setUserId(userr.getId());
+        userAuthorityRepository.save(userAuthorityEmployeee);
+
 
         User user2 = new User();
         user2.setFirstName("Mike");

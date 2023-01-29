@@ -11,6 +11,8 @@ import java.util.List;
 
 @Data
 public class DutyForm {
+
+    private long id;
     @NotEmpty
     @Size(min = 3, max = 64)
     private String name;

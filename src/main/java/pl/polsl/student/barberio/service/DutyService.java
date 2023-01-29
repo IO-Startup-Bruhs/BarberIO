@@ -28,6 +28,21 @@ public class DutyService {
         return this.dutyRepository.findAll();
     }
 
+    public Optional<Duty> updateDuty(DutyForm form){
+        var duty = dutyRepository.findById(form.getId());
+
+        duty.ifPresent(d->{
+            d.setName(form.getName());
+            d.setPrice(form.getPrice());
+            d.setDuration(form.getDuration());
+            d.setDoneBy(form.getDoneBy());
+            this.dutyRepository.save(d);
+        });
+
+        return duty;
+    }
+
+
     public Optional<Duty> getDutyById(long id){
         return this.dutyRepository.findById(id);
     }
