@@ -28,7 +28,10 @@
         <div class="ui hidden divider"></div>
         <div class="ui inverted center aligned segment">
             <form th:action="@{/client/newAppointment}" method="post" class="ui form">
-                <label for="formName">Date: </label><input type="text" id="formName" name="formValue">
+                <label for="formName">Date: </label>
+                <input type="date" id="formValue" name="formValue"
+                       value="2023-01-31"
+                       min="2023-01-31" max="2023-02-28">
                 <div class="ui hidden divider"></div>
                 <button type="submit" class="ui button">Next</button>
             </form>

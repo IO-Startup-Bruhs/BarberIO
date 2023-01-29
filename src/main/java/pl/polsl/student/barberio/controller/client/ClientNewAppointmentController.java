@@ -63,7 +63,7 @@ public class ClientNewAppointmentController {
                 return "client/newAppointment/date";
             }
             case SELECT_DATE -> {
-                var dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+                var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 var date = dateFormat.parse(formValue);
                 newAppointmentForm.setDate(date);
                 newAppointmentForm.setCreationStep(NewAppointmentForm.AppointmentCreationStep.CONFIRM);
