@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BarberIO</title>
+    <title>Salon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
@@ -19,45 +19,61 @@
 <div class="fluid container">
     <div class="ui hidden divider"></div>
 
-    <main class="ui text container">
+    <main class="ui container">
 
         <div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>
 
         <div class="ui center aligned inverted segment">
-            <h1>Add Duty:</h1>
+            <h1>All Duties</h1>
         </div>
 
-        <div class="ui very padded inverted segment">
+        <div class="ui hidden divider"></div>
 
-            <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.DutyForm"*/-->
-            <form th:action="@{/admin/managesalon}" class="ui inverted form" th:object="${form}" method="POST">
-                <div th:class="${#fields.hasErrors('name')}? 'field error' : 'field'">
-                    <label>Name</label>
-                    <input type="text" name="name" th:field="*{name}" placeholder="Duty Name">
-                </div>
-                <div th:class="${#fields.hasErrors('price')}? 'field error' : 'field'">
-                    <label>Price</label>
-                    <input type="text" name="price" th:field="*{price}" placeholder="45">
-                </div>
-                <div th:class="${#fields.hasErrors('duration')}? 'field error' : 'field'">
-                    <label>Duration</label>
-                    <input type="text" name="duration" th:field="*{duration}" placeholder="30">
-                </div>
-                <div class ="ui text">Done by:</div>
-                <select name="doneBy" multiple="" th:class="${#fields.hasErrors('doneBy')}? 'ui fluid dropdown error' : 'ui fluid dropdown'">
-                    <option value="">Employees</option>
-                    <option th:each="employee : ${employees}" th:text="${employee.firstName} + ' ' + ${employee.lastName}" th:value="${employee.id}"></option>
-                </select>
-                <div class="ui hidden divider"></div>
-                <button class="ui button" type="submit">Submit</button>
-            </form>
-            <script>
-                $('.ui.dropdown')
-                    .dropdown()
-                ;
-            </script>
-        </div>
+        <table class="ui celled inverted table">
+
+            <thead>
+            <tr>
+                <th>ID <i class="hashtag icon"></i></th>
+                <th>Name <i class="user icon"></i></i></th>
+                <th>Price <i class="phone icon"></i></th>
+                <th>Duration <i class="at icon"></i></th>
+                <th>Done by <i class="cog icon"></i></th>
+                <th>Actions <i class="cog icon"></i></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="allDuties" type="java.util.List"*/-->
+            <!--/*@thymesVar id="duty" type="pl.polsl.student.barberio.model.Duty"*/-->
+            <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
+            <tr th:each="duty:${allDuties}">
+
+                <td th:text="${duty.getId()}"></td>
+
+                <td th:text="${duty.getName()}"></td>
+
+                <td th:text="${duty.getPrice()}"></td>
+
+                <td th:text="${duty.getDuration()}"></td>
+
+                <td>
+                    <ul th:each="user:${duty.getDoneBy()}">
+                        <li th:text="${user.getFirstName()+' '+user.getLastName()}"/>
+                    </ul>
+                </td>
+
+                <td>
+                    <a th:href="@{/admin/dutyoperations/updateduty/{id}(id=${duty.getId()})}"
+                       class="ui button">Update</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="ui button" th:href="@{/admin/dutyoperations/newduty}">Add new duty</a>
+
 
     </main>
 </div>

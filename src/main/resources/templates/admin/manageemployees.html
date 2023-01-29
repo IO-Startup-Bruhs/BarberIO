@@ -59,7 +59,8 @@
                 <td th:text="${employee.getEmail()}"></td>
 
                 <td>
-                    <a class="ui button">Update</a>
+                    <a th:href="@{/admin/useroperations/updateemployee/{id}(id=${employee.getId()})}"
+                       class="ui button">Update</a>
                     <a class="ui button">Add work hours</a>
                 </td>
 

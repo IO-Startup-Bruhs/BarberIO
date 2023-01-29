@@ -32,7 +32,7 @@
 
     <div class="ui very padded inverted segment">
 
-      <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.NewEmployeeForm"*/-->
+      <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form."*/-->
       <form th:action="@{/admin/useroperations/newemployee}" class="ui inverted form" th:object="${form}" method="POST">
         <div th:class="${#fields.hasErrors('email')}? 'field error' : 'field'">
           <label>E-Mail</label>

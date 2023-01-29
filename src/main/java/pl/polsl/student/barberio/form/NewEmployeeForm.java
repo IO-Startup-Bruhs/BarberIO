@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class NewEmployeeForm {
+    private long id;
     @Email
     @NotEmpty
     private String email;
