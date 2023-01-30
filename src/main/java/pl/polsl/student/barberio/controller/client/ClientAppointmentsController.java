@@ -16,9 +16,10 @@ public class ClientAppointmentsController {
     @GetMapping("/client/appointments")
     public String showTableWithAppointments(Model model, User user) {
         model.addAttribute("appointments", this.appointmentService.getAppointmentsOfUser(user));
-        return "client/appointments";
+        return "/client/appointments";
     }
 
+    //TODO clear up setters
     @Autowired
     public void setAppointmentService(AppointmentService appointmentService, DutyService dutyService) {
         this.appointmentService = appointmentService;

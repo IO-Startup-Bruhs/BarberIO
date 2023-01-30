@@ -3,11 +3,11 @@ package pl.polsl.student.barberio.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.polsl.student.barberio.model.Appointment;
-import pl.polsl.student.barberio.model.Duty;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.repository.AppointmentRepository;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,7 +17,15 @@ public class AppointmentService {
 
     public List<Appointment> getAppointmentsOfUser(User customer)
     {
-        return appointmentRepository.findByCustomerId(customer.getId());
+        //TODO repair
+        return appointmentRepository.findByCustomerId(3/*customer.getId()*/);
+    }
+
+    @Transactional
+    public void deleteAppointment(Long appointmentId, long customerId)
+    {
+        //TODO repair
+        appointmentRepository.deleteAppointmentById(appointmentId);
     }
 
     @Autowired

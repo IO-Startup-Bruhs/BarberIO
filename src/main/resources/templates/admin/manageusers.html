@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Manage customers | BarberIO</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
 </head>
 <body>
+<table class="ui celled table">
+    <thead>
+    <tr><th>First name</th>
+        <th>Last name</th>
+        <th>Phone number</th>
+        <th>E-mail</th>
+        <th>Actions</th>
+    </tr></thead>
+    <tbody>
+    <!--/*@thymesVar id="clients" type="java.util.List"*/-->
+    <!--/*@thymesVar id="client" type="pl.polsl.student.barberio.model.User"*/-->
+    <!--/*@thymesVar id="appointmentRepository" type="pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
+    <!--/*@thymesVar id="clientDeleteAppointmentController" type="pl.polsl.student.barberio.controller.client.ClientDeleteAppointmentController"*/-->
 
+    <tr th:each="client:${clients}">
+        <td th:text="${client.getFirstName()}"></td>
+        <td th:text="${client.getLastName()}"></td>
+        <td th:text="${client.getPhoneNumber()}"></td>
+        <td th:text="${client.getEmail()}"></td>
+        <td><a class="ui label" th:href="@{/admin/manageusers/{clientId}/manage(clientId=${SecurityContextHolder.getContext().getAuthentication().getId()})}">Manage</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

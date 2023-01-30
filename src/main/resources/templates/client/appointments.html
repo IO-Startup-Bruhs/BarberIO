@@ -19,16 +19,15 @@
     <tbody>
     <!--/*@thymesVar id="appointments" type="java.util.List"*/-->
     <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
-    <!--/*@thymesVar id="appointmentRepository" type="package pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
+    <!--/*@thymesVar id="appointmentRepository" type="pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
+    <!--/*@thymesVar id="clientDeleteAppointmentController" type="pl.polsl.student.barberio.controller.client.ClientDeleteAppointmentController"*/-->
 
     <tr th:each="appointment:${appointments}">
         <td th:text="${appointment.getDate().toString()}"></td>
         <td th:text="${appointment.getDuty().getName()}"></td>
-        <td th:text="${appointment.getEmployee().getFirstName()}+${appointment.getEmployee().getLastName()}"></td>
+        <td th:text="${appointment.getEmployee().getFirstName()} + ' ' + ${appointment.getEmployee().getLastName()}"></td>
         <td th:text="${appointment.isConfirmation() ? 'Confirmed':'Not confirmed'}"></td>
-        <!--
-        <td><a class="ui label" th:href="@{appointmentRepository.deleteAppointmentById(id = ${appointment.getId()})}">Delete</a></td>
-        -->
+        <td><a class="ui label" th:href="@{/client/appointments/{appointmentId}/{customerId}/remove(appointmentId=${appointment.getId()}, customerId=${appointment.getCustomer().getId()})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
