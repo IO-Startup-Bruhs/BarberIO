@@ -2,11 +2,13 @@ package pl.polsl.student.barberio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import pl.polsl.student.barberio.form.NewAppointmentForm;
 import pl.polsl.student.barberio.model.Appointment;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.repository.AppointmentRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,6 +40,12 @@ public class AppointmentService {
 
     public List<Appointment> getAppointments(User customer) {
         return appointmentRepository.findByCustomerId(customer.getId());
+    }
+
+    @Transactional
+    public void deleteAppointment(long appointmentId, long customerId)
+    {
+        appointmentRepository.deleteAppointmentById(appointmentId);
     }
 
     public List<Appointment> getAppointments() {

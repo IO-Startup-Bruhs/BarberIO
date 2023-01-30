@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.service.AppointmentService;
 
+import javax.transaction.Transactional;
+
 @Controller
 public class ClientDeleteAppointmentController {
     private AppointmentService appointmentService;
+    @Transactional
     @GetMapping("/client/appointments/{appointmentId}/{customerId}/remove")
-    public String deleteAppointment(Model model, @PathVariable long appointmentId, @PathVariable long customerId)
+    public String deleteAppointment(@PathVariable long appointmentId, @PathVariable long customerId)
     {
         this.appointmentService.deleteAppointment(appointmentId, customerId);
         return "redirect:/client/appointments/";

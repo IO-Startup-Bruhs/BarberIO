@@ -1,5 +1,6 @@
 package pl.polsl.student.barberio.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.polsl.student.barberio.form.DutyForm;
 import pl.polsl.student.barberio.model.Duty;
