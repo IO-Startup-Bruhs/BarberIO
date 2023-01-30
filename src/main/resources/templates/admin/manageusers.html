@@ -47,25 +47,17 @@
             <!--/*@thymesVar id="allClients" type="java.util.List"*/-->
             <!--/*@thymesVar id="client" type="pl.polsl.student.barberio.model.User"*/-->
             <tr th:each="client:${allClients}">
-
                 <td th:text="${client.getId()}"></td>
-
                 <td th:text="${client.getFirstName()}"></td>
-
                 <td th:text="${client.getLastName()}"></td>
-
                 <td th:text="${client.getPhoneNumber()}"></td>
-
                 <td th:text="${client.getEmail()}"></td>
-
                 <td>
-                    <a class="ui button">Update?</a>
+                    <a class="ui label" th:href="@{/admin/showappointments/{id}(id=${client.getId()})}">Show appointments</a>
                 </td>
-
             </tr>
             </tbody>
         </table>
-
 
     </main>
 

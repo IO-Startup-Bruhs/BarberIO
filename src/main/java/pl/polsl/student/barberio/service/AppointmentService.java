@@ -55,6 +55,10 @@ public class AppointmentService {
         return appointmentRepository.findByCustomerId(customer.getId());
     }
 
+    public List<Appointment> getAppointmentsOfUserByID(long id) {
+        return appointmentRepository.findByCustomerId(id);
+    }
+
     public List<Appointment> getAppointments() {
         Iterable<Appointment> iterable = appointmentRepository.findAll();
         List<Appointment> list = new ArrayList<>((Collection<Appointment>) iterable);
