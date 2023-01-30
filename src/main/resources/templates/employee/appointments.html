@@ -37,6 +37,7 @@
                 <th>Date <i class="calendar day icon"></i></th>
                 <th>Duty <i class="cut icon"></i></th>
                 <th>Client <i class="user icon"></i></th>
+                <th>Client phone number<i class="phone icon"/></th>
                 <th>Employee <i class="user outline icon"></i></th>
                 <th>Status <i class="hourglass start icon"></i></th>
                 <th>Actions <i class="cog icon"></i></th>
@@ -55,6 +56,8 @@
                 <td th:text="${appointment.getDuty().getName()}"></td>
 
                 <td th:text="${appointment.getCustomer().getFirstName()} + ' ' + ${appointment.getCustomer().getLastName()}"></td>
+
+                <td th:text="${appointment.getCustomer().getPhoneNumber()}"></td>
 
                 <td th:text="${appointment.getEmployee().getFirstName()} + ' ' + ${appointment.getEmployee().getLastName()}"></td>
 

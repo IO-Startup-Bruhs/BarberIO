@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Appointment | BarberIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+    <style>
+        .customBackgroundColor{
+            background-color: #252525;
+        }
+    </style>
+</head>
+
+<body class="customBackgroundColor ui">
+
+<main class="ui text container">
+
+    <div class="ui hidden divider"></div>
+
+
+    <div class="ui raised segments">
+        <div class="ui inverted center aligned segment">
+            <h1>Choose employee:</h1>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="ui inverted center aligned segment">
+            <form th:action="@{/employee/newAppointment}" method="post" class = "ui form">
+                <label>Date: </label>
+                <input  type="date" id="formValue" name="formValue"
+                       value="2023-01-01"
+                       min="2023-01-01" max="2024-01-01">
+                <div class="ui hidden divider"></div>
+                <button type="submit" class="ui button">Next</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+import pl.polsl.student.barberio.form.EmployeeNewAppointmentForm;
 import pl.polsl.student.barberio.form.NewAppointmentForm;
 import pl.polsl.student.barberio.impl.DatabaseUserDetails;
 import pl.polsl.student.barberio.model.Appointment;
@@ -67,6 +68,15 @@ public class AppointmentService {
     }
 
     public void newAppointmentFromForm(NewAppointmentForm form, User customer) {
+        var appointment = new Appointment();
+        appointment.setEmployee(form.getEmployee());
+        appointment.setDuty(form.getDuty());
+        appointment.setDate(LocalDateTime.of(form.getDate(), form.getTime()));
+        appointment.setCustomer(customer);
+        appointmentRepository.save(appointment);
+    }
+
+    public void newAppointmentFromForm(EmployeeNewAppointmentForm form, User customer) {
         var appointment = new Appointment();
         appointment.setEmployee(form.getEmployee());
         appointment.setDuty(form.getDuty());
