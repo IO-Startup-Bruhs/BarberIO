@@ -27,9 +27,20 @@
         </div>
         <div class="ui hidden divider"></div>
         <div class="ui inverted center aligned segment">
+            <!--/*@thymesVar id="allPossibleHours" type="java.util.List"*/-->
+            <!--/*@thymesVar id="possibleHour" type="java.time.LocalDate"*/-->
             <form th:action="@{/client/newAppointment}" method="post">
+            <select id="formValue" name="formValue" class="ui fluid dropdown">
+                <option th:each="possibleHour : ${allPossibleHours}" th:text="${possibleHour.toString()}" th:value="${possibleHour}"></option>
+            </select>
+                <div class="ui hidden divider"></div>
                 <button type="submit" class="ui olive button">Confirm</button>
             </form>
+            <script>
+                $('.ui.dropdown')
+                    .dropdown()
+                ;
+            </script>
         </div>
     </div>
 </main>

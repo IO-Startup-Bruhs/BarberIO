@@ -3,6 +3,7 @@ package pl.polsl.student.barberio.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -17,10 +18,9 @@ public class Appointment {
     private User employee;
     @ManyToOne
     private Duty duty;
-    private Date date;
-    private boolean confirmation=false;
-
-    private boolean cancelled =false;
+    private LocalDateTime date;
+    private boolean confirmation = false;
+    private boolean cancelled = false;
     @OneToOne
     private AppointmentFeedback feedback;
 }
