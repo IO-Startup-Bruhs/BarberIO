@@ -84,6 +84,16 @@ public class UserService {
         return this.userAuthorityRepository.getAllByUserId(user.getId());
     }
 
+    public User newClient(User user){
+
+        this.userRepository.save(user);
+        UserAuthority userAuthority = new UserAuthority();
+        userAuthority.setUserId(user.getId());
+        userAuthority.setRole("CLIENT");
+        this.userAuthorityRepository.save(userAuthority);
+        return user;
+    }
+
     public List<User> getUsersWithAuthority(String authority) {
 
 //        Iterable<UserAuthority> allList=userAuthorityRepository.findAll();
