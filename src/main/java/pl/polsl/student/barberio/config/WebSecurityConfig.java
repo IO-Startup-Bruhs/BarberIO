@@ -23,7 +23,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.formLogin().loginPage("/login").permitAll();
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();
         http.authorizeRequests().antMatchers("/res/fomanticui/**", "/login", "/", "/signup").permitAll()
                 .antMatchers("/client/**").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/employee/**").hasAnyAuthority("ADMIN","EMPLOYEE")
@@ -31,18 +31,9 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    /*    @Profile({"devel"})
-        @Bean
-        public SecurityFilterChain disableSecurityRestrictions(HttpSecurity http) throws Exception {
-            return http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
-                    .and().csrf().ignoringAntMatchers("/h2-console/**")
-                    .and().headers().frameOptions().sameOrigin().and().build();
-        }*/
     @Profile({"devel"})
     @Bean
     public WebSecurityCustomizer ignoreForH2Console() {
         return (web) -> web.ignoring().antMatchers("/h2-console/**");
     }
-
-
 }

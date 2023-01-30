@@ -10,8 +10,6 @@ import pl.polsl.student.barberio.service.UserService;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
 
 @Configuration
 @Profile("devel")
@@ -103,14 +101,14 @@ public class DevelopmentConfig {
 
 
         Appointment appointment1 = new Appointment();
-        appointment1.setDate(LocalDateTime.of(2023, Month.FEBRUARY,02,12,15));
+        appointment1.setDate(LocalDateTime.of(2023, Month.FEBRUARY,2,12,15));
         appointment1.setCustomer(user2);
         appointment1.setEmployee(user);
         appointment1.setDuty(duty1);
         appointmentRepository.save(appointment1);
 
         Appointment appointment2 = new Appointment();
-        appointment2.setDate(LocalDateTime.of(2023, Month.FEBRUARY,02,14,30));
+        appointment2.setDate(LocalDateTime.of(2023, Month.FEBRUARY,2,14,30));
         appointment2.setCustomer(client2);
         appointment2.setEmployee(user);
         appointment2.setDuty(duty1);

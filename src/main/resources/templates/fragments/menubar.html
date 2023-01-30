@@ -34,11 +34,6 @@
             </div>
             <!--/*@thymesVar id="user" type="pl.polsl.student.barberio.model.User"*/-->
             <div sec:authorize="isAuthenticated()" th:with="user=${#authorization.getAuthentication().principal.getUser()}" class="right aligned menu">
-                <a class="ui item disabled">
-                    <i class="user icon" style="visibility: visible;">
-                    </i>
-                    <span th:text="${user.firstName + ' ' + user.lastName}" class="ui medium text"></span>
-                </a>
                 <a sec:authorize="hasAuthority('CLIENT')" th:href="@{/client/newAppointment}" class="ui item">
                     <span class="ui medium text">New Appointment</span>
                 </a>
@@ -60,15 +55,15 @@
                 <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/managesalon}" class="ui item">
                     <span class="ui medium text">Salon</span>
                 </a>
-
                 <a th:href="@{/logout}" class="ui item">
                     <span class="ui medium text">Log out</span>
                 </a>
-
+                <div class="ui item">
+                    <i class="user icon" style="visibility: visible;">
+                    </i>
+                    <span th:text="${user.firstName + ' ' + user.lastName}" class="ui medium text"></span>
+                </div>
             </div>
-
-
-
         </div>
 
     </div>
