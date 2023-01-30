@@ -2,34 +2,62 @@ package pl.polsl.student.barberio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.polsl.student.barberio.form.NewAppointmentForm;
 import pl.polsl.student.barberio.model.Appointment;
 import pl.polsl.student.barberio.model.User;
 import pl.polsl.student.barberio.repository.AppointmentRepository;
 
-
-import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
 
     private AppointmentRepository appointmentRepository;
 
-    public List<Appointment> getAppointmentsOfUser(User customer)
-    {
-        //TODO repair
-        return appointmentRepository.findByCustomerId(3/*customer.getId()*/);
+    public void setCancelled(long appointmentId) {
+        Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
+        appointment.ifPresent(a -> {
+            a.setCancelled(true);
+            appointmentRepository.save(a);
+        });
+
     }
 
-    @Transactional
-    public void deleteAppointment(Long appointmentId, long customerId)
-    {
-        //TODO repair
-        appointmentRepository.deleteAppointmentById(appointmentId);
+    public void setConfirmed(long appointmentId) {
+        Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
+        appointment.ifPresent(a -> {
+            a.setConfirmation(true);
+            appointmentRepository.save(a);
+        });
+
+    }
+
+
+    public List<Appointment> getAppointments(User customer) {
+        return appointmentRepository.findByCustomerId(customer.getId());
+    }
+
+    public List<Appointment> getAppointments() {
+        Iterable<Appointment> iterable = appointmentRepository.findAll();
+        List<Appointment> list = new ArrayList<>((Collection<Appointment>) iterable);
+        //może można zwrócić i używać iterable ?
+        return list;
+    }
+
+    public void newAppointmentFromForm(NewAppointmentForm form, User customer) {
+        var appointment = new Appointment();
+        appointment.setEmployee(form.getEmployee());
+        appointment.setDuty(form.getDuty());
+        appointment.setDate(form.getDate());
+        appointment.setCustomer(customer);
+        appointmentRepository.save(appointment);
     }
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository) {
+    public void setAppointmentRepository(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
     }
 }

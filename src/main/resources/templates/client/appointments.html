@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Your planned appointments | BarberIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
     <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
@@ -10,18 +12,18 @@
 <body>
 <table class="ui celled table">
     <thead>
-    <tr><th>Date</th>
+    <tr>
+        <th>Date</th>
         <th>Duty</th>
         <th>Employee</th>
         <th>Confirmed</th>
         <th>Actions</th>
-    </tr></thead>
+    </tr>
+    </thead>
     <tbody>
     <!--/*@thymesVar id="appointments" type="java.util.List"*/-->
     <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
     <!--/*@thymesVar id="appointmentRepository" type="pl.polsl.student.barberio.repository.AppointmentRepository"*/-->
-    <!--/*@thymesVar id="clientDeleteAppointmentController" type="pl.polsl.student.barberio.controller.client.ClientDeleteAppointmentController"*/-->
-
     <tr th:each="appointment:${appointments}">
         <td th:text="${appointment.getDate().toString()}"></td>
         <td th:text="${appointment.getDuty().getName()}"></td>

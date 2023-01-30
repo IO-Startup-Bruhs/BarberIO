@@ -67,4 +67,8 @@ public class UserService {
     public void setUserAuthorityRepository(UserAuthorityRepository userAuthorityRepository) {
         this.userAuthorityRepository = userAuthorityRepository;
     }
+
+    public BCryptPasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
 }
