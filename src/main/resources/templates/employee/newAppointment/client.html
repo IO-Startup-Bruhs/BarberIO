@@ -24,12 +24,12 @@
     <div class="ui raised segments">
         <div class="ui raised segments">
             <div class="ui inverted center aligned segment">
-                <h1>Choose employee:</h1>
+                <h1>New Client:</h1>
             </div>
             <div class="ui hidden divider"></div>
             <div class="ui inverted center aligned segment">
                 <!--/*@thymesVar id="newAppointmentForm" type="pl.polsl.student.barberio.form.EmployeeNewAppointmentForm"*/-->
-                <form th:action="@{/employee/newAppointment}" th:object="${newAppointmentForm}" method="post">
+                <form th:action="@{/employee/newAppointment}" th:object="${newAppointmentForm}" method="post" class="ui inverted form">
                     <div class="field">
                         <label>First name</label>
                         <input type="text" name="firstName" th:field="*{firstName}" placeholder="Mike">
