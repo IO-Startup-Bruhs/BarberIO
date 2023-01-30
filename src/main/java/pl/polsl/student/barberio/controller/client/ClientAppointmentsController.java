@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pl.polsl.student.barberio.impl.DatabaseUserDetails;
 import pl.polsl.student.barberio.service.AppointmentService;
 
-import javax.transaction.Transactional;
-
 @Controller
 public class ClientAppointmentsController {
     private AppointmentService appointmentService;
