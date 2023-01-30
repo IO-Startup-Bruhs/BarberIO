@@ -16,6 +16,7 @@
 </head>
 <body class="ui customBackgroundColor">
 <div th:replace="fragments/menubar :: menubar"></div>
+<div class="ui hidden divider"></div>
 <div class="fluid container">
     <div class="ui hidden divider"></div>
 
@@ -53,7 +54,7 @@
                 <td th:text="${client.getPhoneNumber()}"></td>
                 <td th:text="${client.getEmail()}"></td>
                 <td>
-                    <a class="ui label" th:href="@{/admin/showappointments/{id}(id=${client.getId()})}">Show appointments</a>
+                    <a class="ui button" th:href="@{/admin/showappointments/{id}(id=${client.getId()})}">Show appointments</a>
                 </td>
             </tr>
             </tbody>

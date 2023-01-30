@@ -14,20 +14,22 @@
   </style>
 </head>
 <body class="customBackgroundColor ui">
+<div th:replace="fragments/menubar :: menubar"></div>
+<div class="ui hidden divider"></div>
 <main class="ui text container">
 
   <div class="ui hidden divider"></div>
 
   <div class="ui raised segments">
 
-    <div class="ui center aligned segment">
+    <div class="ui center aligned inverted segment">
       <h1>UPDATE EMPLOYEE:</h1>
     </div>
 
-    <div class="ui very padded segment">
+    <div class="ui very padded inverted segment">
 
       <!--/*@thymesVar id="form" type="pl.polsl.student.barberio.form.NewEmployeeForm"*/-->
-      <form th:action="@{/admin/useroperations/updateemployee/{id}}" class="ui form" th:object="${form}" method="POST">
+      <form th:action="@{/admin/useroperations/updateemployee/{id}}" class="ui inverted form" th:object="${form}" method="POST">
           <input type="hidden" th:field="*{id}"/>
         <div th:class="${#fields.hasErrors('email')}? 'field error' : 'field'">
           <label>E-Mail</label>

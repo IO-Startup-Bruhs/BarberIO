@@ -16,6 +16,7 @@
 </head>
 <body class="ui customBackgroundColor">
 <div th:replace="fragments/menubar :: menubar"></div>
+<div class="ui hidden divider"></div>
 <div class="fluid container">
     <div class="ui hidden divider"></div>
 
@@ -61,7 +62,6 @@
                 <td>
                     <a th:href="@{/admin/useroperations/updateemployee/{id}(id=${employee.getId()})}"
                        class="ui button">Update</a>
-                    <a class="ui button">Add work hours</a>
                 </td>
 
             </tr>

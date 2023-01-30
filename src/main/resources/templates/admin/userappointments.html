@@ -16,6 +16,7 @@
 </head>
 <body class = "ui customBackgroundColor">
 <div th:replace="fragments/menubar :: menubar"></div>
+<div class="ui hidden divider"></div>
 <div class="fluid container">
 
     <div class="ui hidden divider"></div>
@@ -42,13 +43,13 @@
             <!--/*@thymesVar id="userAppointments" type="java.util.List"*/-->
             <!--/*@thymesVar id="appointment" type="pl.polsl.student.barberio.model.Appointment"*/-->
             <tr th:each="appointment:${userAppointments}"
-                th:class="${appointment.isCancelled() ? 'inverted red' : (appointment.isConfirmation() ? 'inverted olive' : 'inverted yellow')}">
+                th:class="${appointment.isCancelled() ? 'inverted red' : (appointment.isConfirmation() ? 'inverted olive' : 'inverted orange')}">
                 <td th:text="${appointment.getDate().toString()}"></td>
                 <td th:text="${appointment.getDuty().getName()}"></td>
                 <td th:text="${appointment.getEmployee().getFirstName()} + ' ' + ${appointment.getEmployee().getLastName()}"></td>
                 <td th:text="${appointment.isCancelled() ? 'Cancelled' : (appointment.isConfirmation() ? 'Confirmed' : 'Not Confirmed')}"></td>
-                <td><a class="ui label" th:href="@{/admin/cancelappointment/{id}(id=${appointment.getId()})}" th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}">Cancel</a>
-                    <a class="ui label" th:href="@{/admin/confirmappointment/{id}(id=${appointment.getId()})}" th:class="${appointment.isConfirmation() ? 'ui disabled button' : 'ui button'}">Confirm</a>
+                <td><a class="ui button" th:href="@{/admin/cancelappointment/{id}(id=${appointment.getId()})}" th:class="${appointment.isCancelled() ? 'ui disabled button' : 'ui button'}">Cancel</a>
+                    <a class="ui button" th:href="@{/admin/confirmappointment/{id}(id=${appointment.getId()})}" th:class="${appointment.isConfirmation() ? 'ui disabled button' : 'ui button'}">Confirm</a>
                 </td>
             </tr>
             </tbody>

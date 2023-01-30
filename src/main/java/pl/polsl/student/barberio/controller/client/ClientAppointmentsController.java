@@ -16,7 +16,7 @@ public class ClientAppointmentsController {
     @GetMapping("/client/appointments")
     public String showTableWithAppointments(Model model, @AuthenticationPrincipal DatabaseUserDetails principal) {
         model.addAttribute("appointments",this.appointmentService.getAppointments(principal.getUser()));
-        return "userAppointments";
+        return "/client/userAppointments";
     }
 
     @GetMapping("/cancelAppointment/client/{id}")

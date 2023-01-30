@@ -31,6 +31,7 @@ public class EmployeeAppointmentsController {
 
     @GetMapping("/confirmAppointment/{id}")
     public String confirmAppointment(@PathVariable long id, @AuthenticationPrincipal DatabaseUserDetails principal){
+
         appointmentService.setConfirmed(id, principal);
         return "redirect:/employee/appointments";
     }
