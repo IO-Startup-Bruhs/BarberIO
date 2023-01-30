@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import pl.polsl.student.barberio.model.Appointment;
-import pl.polsl.student.barberio.model.Duty;
-import pl.polsl.student.barberio.model.User;
-import pl.polsl.student.barberio.model.UserAuthority;
-import pl.polsl.student.barberio.repository.AppointmentRepository;
-import pl.polsl.student.barberio.repository.DutyRepository;
-import pl.polsl.student.barberio.repository.UserAuthorityRepository;
-import pl.polsl.student.barberio.repository.UserRepository;
+import pl.polsl.student.barberio.model.*;
+import pl.polsl.student.barberio.repository.*;
 import pl.polsl.student.barberio.service.UserService;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,7 +21,7 @@ public class DevelopmentConfig {
 
     private AppointmentRepository appointmentRepository;
     private DutyRepository dutyRepository;
-
+    private WorkHoursRepository workHoursRepository;
     private UserService userService;
 
     @Bean
@@ -43,6 +39,17 @@ public class DevelopmentConfig {
         userAuthorityEmployee.setRole("EMPLOYEE");
         userAuthorityEmployee.setUserId(user.getId());
         userAuthorityRepository.save(userAuthorityEmployee);
+
+        User userr = new User();
+        userr.setFirstName("Tomas");
+        userr.setLastName("Leemon");
+        userr.setPassword(encodedPassword);
+        userr.setEmail("employeee@mail.com");
+        userRepository.save(userr);
+        UserAuthority userAuthorityEmployeee = new UserAuthority();
+        userAuthorityEmployeee.setRole("EMPLOYEE");
+        userAuthorityEmployeee.setUserId(userr.getId());
+        userAuthorityRepository.save(userAuthorityEmployeee);
 
 
         User user2 = new User();
@@ -87,20 +94,40 @@ public class DevelopmentConfig {
         duty1.getDoneBy().add(user);
         dutyRepository.save(duty1);
 
+        Duty duty2 = new Duty();
+        duty2.setName("triming");
+        duty2.setPrice(90);
+        duty2.setDuration(90);
+        duty2.getDoneBy().add(user);
+        dutyRepository.save(duty2);
+
 
         Appointment appointment1 = new Appointment();
-        appointment1.setDate(new Date(2023-1900, Calendar.JANUARY,20,14,30));
+        appointment1.setDate(LocalDateTime.of(2023, Month.FEBRUARY,02,12,15));
         appointment1.setCustomer(user2);
         appointment1.setEmployee(user);
         appointment1.setDuty(duty1);
         appointmentRepository.save(appointment1);
 
         Appointment appointment2 = new Appointment();
-        appointment2.setDate(new Date(2023-1900, Calendar.JANUARY,22,14,30));
+        appointment2.setDate(LocalDateTime.of(2023, Month.FEBRUARY,02,14,30));
         appointment2.setCustomer(client2);
         appointment2.setEmployee(user);
         appointment2.setDuty(duty1);
         appointmentRepository.save(appointment2);
+
+//        Appointment appointment3 = new Appointment();
+//        appointment3.setDate(LocalDateTime.of(2023, Month.FEBRUARY,02,15,30));
+//        appointment3.setCustomer(client2);
+//        appointment3.setEmployee(user);
+//        appointment3.setDuty(duty2);
+//        appointmentRepository.save(appointment3);
+
+        WorkHours workHours1 = new WorkHours();
+        workHours1.setFinishHour(9);
+        workHours1.setFinishHour(18);
+        workHours1.setEmployee(user);
+        workHoursRepository.save(workHours1);
     }
 
     @Autowired
@@ -122,4 +149,9 @@ public class DevelopmentConfig {
 
     @Autowired
     public void setDutyRepository(DutyRepository dutyRepository){this.dutyRepository=dutyRepository;}
+    @Autowired
+    public void setWorkHoursRepository(WorkHoursRepository workHoursRepository) {
+        this.workHoursRepository = workHoursRepository;
+    }
+
 }

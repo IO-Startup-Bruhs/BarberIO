@@ -9,19 +9,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.polsl.student.barberio.form.NewAppointmentForm;
 import pl.polsl.student.barberio.impl.DatabaseUserDetails;
 import pl.polsl.student.barberio.model.User;
+import pl.polsl.student.barberio.model.WorkHours;
 import pl.polsl.student.barberio.service.AppointmentService;
 import pl.polsl.student.barberio.service.DutyService;
 import pl.polsl.student.barberio.service.UserService;
+import pl.polsl.student.barberio.service.WorkHoursService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 // @Vexisu: I left my soul in this class.
+// @VoXel: Here is mine too.
 @Controller
 @SessionAttributes({"newAppointmentForm"})
 public class ClientNewAppointmentController {
     private DutyService dutyService;
     private AppointmentService appointmentService;
+    private WorkHoursService workHoursService;
 
     @GetMapping("/client/newAppointment")
     public String view(Model model) {
@@ -32,7 +39,7 @@ public class ClientNewAppointmentController {
 
     @PostMapping("/client/newAppointment")
     public String process(@ModelAttribute("newAppointmentForm") NewAppointmentForm newAppointmentForm, @RequestParam(value = "formValue", required = false) String formValue, Model model, @AuthenticationPrincipal DatabaseUserDetails principal) throws ParseException {
-        System.out.println(principal.getUser().getFirstName());
+        //System.out.println(principal.getUser().getFirstName());
         switch (newAppointmentForm.getCreationStep()) {
             case SELECT_DUTY -> {
                 var dutyId = Long.parseLong(formValue);
@@ -63,19 +70,27 @@ public class ClientNewAppointmentController {
                 return "client/newAppointment/date";
             }
             case SELECT_DATE -> {
-                var dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm");
-                var date = dateFormat.parse(formValue);
+
+                var dateTime = LocalDateTime.of(LocalDate.parse(formValue), LocalTime.of(0,0));
+                var date = LocalDate.parse(formValue);
                 newAppointmentForm.setDate(date);
+                var workHours = new WorkHours();
+                workHours = workHoursService.getEmployeeWorkHours(newAppointmentForm.getEmployee().getId());
+                var allPossibleHours = appointmentService.returnAllPossibleHours(newAppointmentForm.getEmployee(), dateTime, newAppointmentForm.getDuty().getDuration(),workHours);
+                model.addAttribute("allPossibleHours", allPossibleHours);
                 newAppointmentForm.setCreationStep(NewAppointmentForm.AppointmentCreationStep.CONFIRM);
                 return "client/newAppointment/confirm";
             }
             case CONFIRM -> {
+                LocalTime appointmentTime = LocalTime.parse(formValue);
+                newAppointmentForm.setTime(appointmentTime);
                 this.appointmentService.newAppointmentFromForm(newAppointmentForm, principal.getUser());
                 return "redirect:/client/appointments";
             }
         }
         return "redirect:/client/newAppointment";
     }
+
 
     @Autowired
     public void setAppointmentService(AppointmentService appointmentService) {
@@ -85,5 +100,9 @@ public class ClientNewAppointmentController {
     @Autowired
     public void setDutyService(DutyService dutyService) {
         this.dutyService = dutyService;
+    }
+    @Autowired
+    public void setWorkHoursService(WorkHoursService workHoursService) {
+        this.workHoursService = workHoursService;
     }
 }

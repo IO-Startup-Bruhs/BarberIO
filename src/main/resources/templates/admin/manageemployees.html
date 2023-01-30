@@ -3,10 +3,75 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employees</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/fomanticui/semantic.min.css}">
+    <script th:src="@{/res/fomanticui/semantic.min.js}"></script>
+    <style>
+        .customBackgroundColor{
+            background-color: #252525;
+        }
+    </style>
 </head>
-<body>
+<body class="ui customBackgroundColor">
+<div th:replace="fragments/menubar :: menubar"></div>
+<div class="fluid container">
+    <div class="ui hidden divider"></div>
 
+    <main class="ui container">
+
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+
+        <div class="ui center aligned inverted segment">
+            <h1>All Employees</h1>
+        </div>
+
+        <div class="ui hidden divider"></div>
+
+        <table class="ui celled inverted table">
+
+            <thead>
+            <tr>
+                <th>ID <i class="hashtag icon"></i></th>
+                <th>First Name <i class="user icon"></i></i></th>
+                <th>Last Name <i class="user icon"></i></i></th>
+                <th>Phone Number <i class="phone icon"></i></th>
+                <th>Email <i class="at icon"></i></th>
+                <th>Actions <i class="cog icon"></i></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--/*@thymesVar id="allEmployees" type="java.util.List"*/-->
+            <!--/*@thymesVar id="employee" type="pl.polsl.student.barberio.model.User"*/-->
+            <tr th:each="employee:${allEmployees}">
+
+                <td th:text="${employee.getId()}"></td>
+
+                <td th:text="${employee.getFirstName()}"></td>
+
+                <td th:text="${employee.getLastName()}"></td>
+
+                <td th:text="${employee.getPhoneNumber()}"></td>
+
+                <td th:text="${employee.getEmail()}"></td>
+
+                <td>
+                    <a th:href="@{/admin/useroperations/updateemployee/{id}(id=${employee.getId()})}"
+                       class="ui button">Update</a>
+                    <a class="ui button">Add work hours</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="ui button" th:href="@{/admin/useroperations/newemployee}">Add new employee</a>
+
+
+    </main>
+</div>
 </body>
 </html>

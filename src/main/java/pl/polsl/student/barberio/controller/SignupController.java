@@ -15,22 +15,19 @@ import javax.validation.Valid;
 
 @Controller
 public class SignupController {
-    private final UserService userService;
-
     @Autowired
-    public SignupController(UserService userService) {
-        this.userService = userService;
-    }
+    private  UserService userService;
 
     @GetMapping("/signup")
     public String view(@ModelAttribute("form") SignupForm form, Model model) {
+
         return "signup";
     }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("form") @Valid SignupForm form, BindingResult bindingResult, Model model) {
         if (!bindingResult.hasErrors()) {
-            var registeredUserOptional = this.userService.signupUser(form);
+            var registeredUserOptional = this.userService.signupClient(form);
             if (registeredUserOptional.isPresent()) {
                 return "redirect:/signin";
             }

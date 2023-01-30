@@ -4,6 +4,9 @@ import lombok.Data;
 import pl.polsl.student.barberio.model.Duty;
 import pl.polsl.student.barberio.model.User;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -11,7 +14,8 @@ public class NewAppointmentForm {
     private AppointmentCreationStep creationStep = AppointmentCreationStep.SELECT_DUTY;
     private Duty duty;
     private User employee;
-    private Date date;
+    private LocalDate date;
+    private LocalTime time;
 
     public enum AppointmentCreationStep {
         SELECT_DUTY,

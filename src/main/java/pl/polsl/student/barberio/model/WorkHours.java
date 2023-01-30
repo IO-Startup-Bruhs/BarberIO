@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 public class WorkHours {
     @Id
     private long id;
-    private String combinedDates;
+    private int startHour=8;
+    private int finishHour=16;
     @ManyToOne
     private User employee;
 }
